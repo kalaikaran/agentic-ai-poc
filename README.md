@@ -1,11 +1,12 @@
 # agentic-ai-poc
 
-A TypeScript proof-of-concept for building a simple agentic AI application.
+A TypeScript proof-of-concept for building a simple agentic AI application using the [Anthropic SDK](https://github.com/anthropics/anthropic-sdk-typescript).
 
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) v18+
 - [pnpm](https://pnpm.io/) v10+
+- An [Anthropic API key](https://console.anthropic.com/)
 
 ## Setup
 
@@ -13,13 +14,24 @@ A TypeScript proof-of-concept for building a simple agentic AI application.
 pnpm install
 ```
 
+Create a `.env` file in the project root with your API key:
+
+```
+ANTHROPIC_API_KEY=your_api_key_here
+```
+
 ## Scripts
 
 | Command | Description |
 |---|---|
-| `pnpm start` | Run the app directly with `ts-node` (no build step needed) |
-| `pnpm dev` | Watch `src/index.ts` for changes and restart automatically via `nodemon` |
+| `pnpm start` | Run `src/index.ts` directly with `tsx` (no build step needed) |
+| `pnpm dev` | Watch `src/index.ts` for changes and restart automatically via `tsx watch` |
 | `pnpm build` | Compile TypeScript from `src/` → `dist/` |
+| `pnpm serve` | Run the compiled output at `dist/index.js` |
+
+## What it does
+
+`src/index.ts` sends a message to the Claude API using the Anthropic SDK and logs the response content and token usage to the console.
 
 ## Project Structure
 
@@ -36,7 +48,7 @@ Running `pnpm build` compiles all TypeScript source files in `src/` and emits:
 - `.d.ts` declaration files → `dist/`
 - `.map` source maps → `dist/`
 
-The entry point after building is `dist/index.js`.
+The entry point after building is `dist/index.js`, which can be run with `pnpm serve`.
 
 ## TypeScript Configuration
 
